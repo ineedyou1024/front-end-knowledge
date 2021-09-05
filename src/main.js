@@ -1,7 +1,12 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import { Button as vanButton, Calendar as vanCalendar, Toast } from "vant";
+import { 
+    Button as vanButton, 
+    Calendar as vanCalendar, 
+    Toast ,
+    Popup
+} from "vant";
 import {
   Pagination,
   Dialog,
@@ -161,6 +166,7 @@ Vue.use(PageHeader);
 Vue.use(vanButton);
 Vue.use(vanCalendar);
 Vue.use(Toast);
+Vue.use(Popup);
 
 Vue.prototype.$toast = Toast;
 

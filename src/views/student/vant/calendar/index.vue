@@ -19,7 +19,7 @@
             :max-date="maxDate"
         />
         <van-popup v-model="visible" position="top">
-            <div v-for="(item, index) in list" :key="item.date + String(index)">
+            <div class="main" v-for="(item, index) in list" :key="item.date + String(index)">
                 <p>{{ item.position }}</p>
                 <div
                     class="task-row"
@@ -181,5 +181,8 @@ export default {
     .time-col {
         width: 80px;
     }
+}
+.main{
+    padding: 0 10px;
 }
 </style>

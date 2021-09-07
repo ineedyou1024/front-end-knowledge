@@ -35,7 +35,7 @@ const taskArrangement = [
         ]
     },
     {
-        date:'2021-8-15',
+        date:'2021-9-8',
         info:[
             {
                 position:'广东特水牛战队 一区',

@@ -178,7 +178,8 @@ Vue.prototype.$prompt = MessageBox.prompt;
 Vue.prototype.$notify = Notification;
 Vue.prototype.$message = Message;
 
-new Vue({
+const vm = new Vue({
   router,
   render: (h) => h(App),
 }).$mount("#app");
+console.log(vm); // 查看vue的实例 看他挂载的router

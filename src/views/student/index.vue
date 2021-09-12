@@ -1,10 +1,12 @@
 <template>
-  <div id="student-box"></div>
+    <div id="student-box">
+        <p>好好学习，天天向上</p>
+    </div>
 </template>
 
 <script>
 export default {
-  name: "Student",
+    name: 'Student',
 };
 </script>
 

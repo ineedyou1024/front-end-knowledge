@@ -30,6 +30,12 @@
                                 >日历</el-menu-item
                             >
                         </el-submenu>
+                        <el-submenu index="1-3">
+                            <template slot="title">js</template>
+                            <el-menu-item index="1-3-1" @click="goArray"
+                                >数组</el-menu-item
+                            >
+                        </el-submenu>
                     </el-submenu>
                     <el-submenu index="2">
                         <template slot="title">八卦娱乐</template>
@@ -61,34 +67,35 @@
 
 <script>
 export default {
-    name: "Learn",
-    data() {
+    name: 'Learn',
+    data () {
         return {};
     },
     methods: {
-        goCalendar() {
+        goCalendar () {
             this.$router.push({
-                path: "/learn/vancalend",
+                path: '/learn/vancalend',
                 query: {
                     id: 12533
                 }
             });
         },
-        goObservable() {
+        goObservable () {
             this.$router.push({
-                path: "/learn/vueobservable",
+                path: '/learn/vueobservable',
             });
         },
-        goTestRouter() {
+        goTestRouter () {
             this.$router.push({
-                path: "/learn/vuerouter/135455",
+                path: '/learn/vuerouter/135455',
             });
         },
-        goNotFind() {
+        goNotFind () {
             this.$router.push({
-                path: "/abckkdd",
+                path: '/abckkdd',
             });
-        }
+        },
+        goArray () { },
     },
 };
 </script>

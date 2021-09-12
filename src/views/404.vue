@@ -6,8 +6,8 @@
 
 <script>
 export default {
-    name: "NotFind",
-    data() {
+    name: 'NotFind',
+    data () {
         return {};
     },
 };

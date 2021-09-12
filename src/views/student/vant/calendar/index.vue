@@ -1,6 +1,6 @@
 <template>
     <div id="calendar-box">
-        <!-- 
+        <!--
             :poppable="false"：平铺方式
             :show-confirm="false" 不显示确定按钮
             :style 日历高度
@@ -14,17 +14,21 @@
             :show-confirm="false"
             :style="{ height: '500px' }"
             :formatter="formatter"
-            @confirm="selectDate"
             :min-date="minDate"
             :max-date="maxDate"
+            @confirm="selectDate"
         />
         <van-popup v-model="visible" position="top">
-            <div class="main" v-for="(item, index) in list" :key="item.date + String(index)">
+            <div
+                v-for="(item, index) in list"
+                :key="item.date + String(index)"
+                class="main"
+            >
                 <p>{{ item.position }}</p>
                 <div
-                    class="task-row"
                     v-for="(task, tin) in item.task"
                     :key="task.start + String(tin)"
+                    class="task-row"
                 >
                     <div class="place-col">
                         <span>{{ task.place }}</span>
@@ -40,10 +44,10 @@
 </template>
 
 <script>
-import { taskArrangement } from "@/mook/calendarData.js";
+import { taskArrangement } from '@/mook/calendarData.js';
 export default {
-    name: "Calendar",
-    data() {
+    name: 'Calendar',
+    data () {
         return {
             dataList: [],
             visible: false,
@@ -51,55 +55,55 @@ export default {
             maxDate: this.handleMaxDate(),
             stampList: [],
             selectItem: ''
-        }
+        };
     },
     computed: {
-        list() {
+        list () {
             if (taskArrangement && taskArrangement.length) {
                 let dataLiat = [];
                 taskArrangement.forEach(item => {
                     if (item.date === this.selectItem) {
-                        dataLiat = item.info
+                        dataLiat = item.info;
                     }
-                })
-                return dataLiat
+                });
+                return dataLiat;
             }
-            return []
+            return [];
         }
     },
-    created() {
+    created () {
         console.log(taskArrangement);
         this.init();
     },
     methods: {
-        init() {
+        init () {
             taskArrangement.forEach(item => {
                 // 时间格式如果为2021-9-5 转换为2021/9/5
-                item.date = item.date.replace(/-/g, "/")
-            })
+                item.date = item.date.replace(/-/g, '/');
+            });
             // 时间戳数组
-            this.stampList = taskArrangement.map(item => new Date(item.date).getTime())
+            this.stampList = taskArrangement.map(item => new Date(item.date).getTime());
             this.dataList = taskArrangement.map(item => {
                 return {
                     date: item.date,
                     stamp: new Date(item.date).getTime()
-                }
-            })
+                };
+            });
         },
-        formatter(day) {
+        formatter (day) {
             const time = day.date.getTime();
             this.dataList.forEach(item => {
-                let taskDate = new Date(item.date);
+                const taskDate = new Date(item.date);
                 // 如果日历与数据中的日期一致就可以给个背景样式
                 if (time === taskDate.getTime()) {
-                    day.className = "red-flag"
+                    day.className = 'red-flag';
                 }
-            })
+            });
             return day;
         },
-        selectDate(day) {
-            let selectDay = new Date(day);
-            let selectTime = selectDay.getTime()
+        selectDate (day) {
+            const selectDay = new Date(day);
+            const selectTime = selectDay.getTime();
             taskArrangement.forEach(item => {
                 if (new Date(item.date).getTime() === selectTime) {
                     this.visible = true;
@@ -107,11 +111,11 @@ export default {
                         if (selectTime === data.stamp) {
                             this.selectItem = data.date;
                         }
-                    })
+                    });
                 }
-            })
+            });
         },
-        handleMinDate() {
+        handleMinDate () {
             this.init();
             let date = null;
             if (taskArrangement.length) {
@@ -119,22 +123,22 @@ export default {
                 const min = Math.min(...this.stampList);
                 let minDay = null;
                 this.dataList.forEach(item => {
-                    if (item.stamp === min) minDay = item.date
-                })
+                    if (item.stamp === min) minDay = item.date;
+                });
                 date = new Date(minDay);
-                return this.handleDate(date)
+                return this.handleDate(date);
 
             }
             // 如果一条数据没有，显示当前月份
             date = new Date();
-            return this.handleDate(date)
+            return this.handleDate(date);
         },
-        handleDate(date) {
+        handleDate (date) {
             const year = date.getFullYear();
             const month = date.getMonth();
-            return new Date(year, month, 1)
+            return new Date(year, month, 1);
         },
-        handleMaxDate() {
+        handleMaxDate () {
             this.init();
             let date = null;
             if (taskArrangement.length) {
@@ -142,24 +146,24 @@ export default {
                 const max = Math.max(...this.stampList);
                 let maxDay = null;
                 this.dataList.forEach(item => {
-                    if (item.stamp === max) maxDay = item.date
-                })
+                    if (item.stamp === max) maxDay = item.date;
+                });
                 date = new Date(maxDay);
                 const year = date.getFullYear();
                 const month = date.getMonth();
                 // 根据date获取当前月最后一天
-                date.setDate(28)
+                date.setDate(28);
                 date.setMonth(date.getMonth() + 1);
-                let lastDay = date.setDate(0);
-                let date2 = new Date(lastDay).getDate();
+                const lastDay = date.setDate(0);
+                const date2 = new Date(lastDay).getDate();
                 return new Date(year, month, date2);
             }
             // 如果一条数据没有，显示当前月份
             date = new Date();
-            date.setDate(28)
+            date.setDate(28);
             date.setMonth(date.getMonth() + 1);
-            let lastDay = date.setDate(0);
-            let date2 = new Date(lastDay).getDate();
+            const lastDay = date.setDate(0);
+            const date2 = new Date(lastDay).getDate();
             return new Date(date.getFullYear(), date.getMonth(), date2);
 
         }
@@ -182,7 +186,7 @@ export default {
         width: 80px;
     }
 }
-.main{
+.main {
     padding: 0 10px;
 }
 </style>

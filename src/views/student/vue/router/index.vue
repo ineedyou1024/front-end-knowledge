@@ -10,7 +10,7 @@
 <script>
 export default {
     props: ['id'],
-    data() {
+    data () {
         return {
 
         };

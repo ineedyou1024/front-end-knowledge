@@ -35,6 +35,14 @@ const routes = [
                 props: true,
                 component: TestRouter
             },
+            {
+                path: 'vuex',
+                component: () => import('../views/student/vue/vuex')
+            },
+            {
+                path: 'jsarray',
+                component: () => import('../views/student/js/array')
+            },
         ],
     },
     {

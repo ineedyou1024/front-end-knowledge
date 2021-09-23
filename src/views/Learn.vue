@@ -10,13 +10,16 @@
                         <template slot="title">大前端</template>
                         <el-submenu index="1-1">
                             <template slot="title">vue</template>
-                            <el-menu-item index="1-1-1" @click="goObservable"
+                            <el-menu-item index="1-1-1" @click="goToNewPage(2)"
                                 >observable跨组件状态存储器</el-menu-item
                             >
-                            <el-menu-item index="1-1-2" @click="goTestRouter"
+                            <el-menu-item index="1-1-2" @click="goToNewPage(3)"
                                 >路由跳转</el-menu-item
                             >
-                            <el-menu-item index="1-1-3" @click="goNotFind"
+                            <el-menu-item index="1-1-3" @click="goToNewPage(5)"
+                                >vuex状态管理</el-menu-item
+                            >
+                            <el-menu-item index="1-1-4" @click="goToNewPage(4)"
                                 >去404看看</el-menu-item
                             >
                         </el-submenu>
@@ -26,13 +29,15 @@
                         </el-submenu>
                         <el-submenu index="1-2">
                             <template slot="title">vant</template>
-                            <el-menu-item index="1-2-1" @click="goCalendar"
+                            <el-menu-item
+                                index="1-2-1"
+                                @click="goToNewPage(1, { id: 12533 })"
                                 >日历</el-menu-item
                             >
                         </el-submenu>
                         <el-submenu index="1-3">
                             <template slot="title">js</template>
-                            <el-menu-item index="1-3-1" @click="goArray"
+                            <el-menu-item index="1-3-1" @click="goToNewPage(6)"
                                 >数组</el-menu-item
                             >
                         </el-submenu>
@@ -66,36 +71,32 @@
 </template>
 
 <script>
+import { url } from '@/utils/url.js';
 export default {
     name: 'Learn',
     data () {
         return {};
     },
     methods: {
-        goCalendar () {
-            this.$router.push({
-                path: '/learn/vancalend',
-                query: {
-                    id: 12533
+        goToNewPage (id, querys) {
+            if (this.$store.state.routeIndex === id) return;
+            this.$store.commit('currentRoute', id);
+            url.forEach(item => {
+                if (item.id === id) {
+                    if (querys && typeof querys === 'object') {
+                        this.$router.push({
+                            path: item.path,
+                            query: querys
+                        });
+                    } else {
+                        this.$router.push({
+                            path: item.path,
+                        });
+                    }
+
                 }
             });
-        },
-        goObservable () {
-            this.$router.push({
-                path: '/learn/vueobservable',
-            });
-        },
-        goTestRouter () {
-            this.$router.push({
-                path: '/learn/vuerouter/135455',
-            });
-        },
-        goNotFind () {
-            this.$router.push({
-                path: '/abckkdd',
-            });
-        },
-        goArray () { },
+        }
     },
 };
 </script>

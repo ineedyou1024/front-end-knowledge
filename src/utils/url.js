@@ -19,4 +19,8 @@ export const url = [
         id: 5,
         path: '/learn/vuex'
     },
+    {
+        id: 6,
+        path: '/learn/jsarray'
+    },
 ];

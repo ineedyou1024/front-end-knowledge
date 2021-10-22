@@ -46,7 +46,6 @@
     </div>
 </template>
 <script>
-import { achievement } from '@/mook/observableData.js';
 import { store, mutations } from './bus.js';
 export default {
     props: {},
@@ -59,6 +58,7 @@ export default {
             searchResult: [],
             radio: '',
             selectSearch: [],
+            mockData: []
         };
     },
     computed: {
@@ -67,13 +67,26 @@ export default {
         },
     },
     methods: {
+        // 调用接口数据
+        getMock () {
+            this.$axios.get('/api/achievement')
+                .then(res => {
+                    console.log('才艺', res.data);
+                    if (res.data.returnCode === 0) {
+                        this.mockData = res.data.achievement;
+                    } else {
+                        this.mockData = [];
+                        this.$message.error('数据请求失败');
+                    }
+                });
+        },
         // 模拟搜索接口，模拟模糊查询
         search () {
             this.searchResult = [];
             if (!this.form.time && !this.form.type) {
                 this.$message.error('请输入查询条件');
             } else if (this.form.time && this.form.type) {
-                achievement.forEach((item) => {
+                this.mockData.forEach(item => {
                     if (
                         item.time.includes(this.form.time) &&
                         item.type.includes(this.form.type)
@@ -82,13 +95,13 @@ export default {
                     }
                 });
             } else if (this.form.time && !this.form.type) {
-                achievement.forEach((item) => {
+                this.mockData.forEach(item => {
                     if (item.time.includes(this.form.time)) {
                         this.searchResult.push(item);
                     }
                 });
             } else if (!this.form.time && this.form.type) {
-                achievement.forEach((item) => {
+                this.mockData.forEach(item => {
                     if (item.type.includes(this.form.type)) {
                         this.searchResult.push(item);
                     }
@@ -125,6 +138,7 @@ export default {
             // 初始化
             this.searchResult = [];
             this.selectSearch = [];
+            this.getMock();
         },
     },
 };

@@ -72,7 +72,6 @@ export default {
         }
     },
     created () {
-        console.log(taskArrangement);
         this.init();
     },
     methods: {

@@ -44,9 +44,9 @@
 </template>
 
 <script>
-import { students } from '@/mook/observableData.js';
 import Modify from '@/components/vueObservable/modify.vue';
 import MoreInfo from '@/components/vueObservable/moreInfo.vue';
+
 
 export default {
     name: 'Observable',
@@ -56,12 +56,27 @@ export default {
     },
     data () {
         return {
-            tableData: students,
+            tableData: [],
             dialogVisible: false,
             needModifyObj: {},
         };
     },
+    created () {
+        this.getMock();
+    },
     methods: {
+        getMock () {
+            this.$axios.get('/api/students')
+                .then(res => {
+                    console.log('字符串', res.data);
+                    if (res.data.returnCode === 0) {
+                        this.tableData = res.data.students;
+                    } else {
+                        this.tableData = [];
+                        this.$message.error('数据请求失败');
+                    }
+                });
+        },
         modify (row) {
             this.dialogVisible = true;
             this.needModifyObj = { ...row };

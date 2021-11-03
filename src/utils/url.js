@@ -23,4 +23,12 @@ export const url = [
         id: 6,
         path: '/learn/jsarray'
     },
+    {
+        id: 7,
+        path: '/learn/echarts'
+    },
+    {
+        id: 8,
+        path: '/learn/responsive'
+    },
 ];

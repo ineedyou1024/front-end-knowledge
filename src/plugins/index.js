@@ -1,10 +1,12 @@
 import Vue from 'vue';
+// vant
 import {
     Button as vanButton,
     Calendar as vanCalendar,
     Toast,
     Popup
 } from 'vant';
+// element
 import {
     Pagination,
     Dialog,
@@ -83,6 +85,10 @@ import {
     Message,
     Notification,
 } from 'element-ui';
+// echarts
+import * as echarts from 'echarts';
+Vue.prototype.$echarts = echarts;
+
 Vue.use(Pagination);
 Vue.use(Dialog);
 Vue.use(Autocomplete);

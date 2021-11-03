@@ -43,6 +43,14 @@ const routes = [
                 path: 'jsarray',
                 component: () => import('../views/student/js/array')
             },
+            {
+                path: 'echarts',
+                component: () => import('../views/student/echarts')
+            },
+            {
+                path: 'responsive',
+                component: () => import('../views/student/vue/responsive')
+            },
         ],
     },
     {

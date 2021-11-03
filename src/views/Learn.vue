@@ -1,6 +1,6 @@
 <template>
     <div class="learn">
-        <el-container style="height: 500px; border: 1px solid #eee">
+        <el-container style="height: 900px; border: 1px solid #eee">
             <el-aside
                 width="200px"
                 style="background-color: rgb(238, 241, 246)"
@@ -19,26 +19,35 @@
                             <el-menu-item index="1-1-3" @click="goToNewPage(5)"
                                 >vuex状态管理</el-menu-item
                             >
-                            <el-menu-item index="1-1-4" @click="goToNewPage(4)"
+                            <el-menu-item index="1-1-4" @click="goToNewPage(8)"
+                                >响应式</el-menu-item
+                            >
+                            <el-menu-item index="1-1-5" @click="goToNewPage(4)"
                                 >去404看看</el-menu-item
                             >
                         </el-submenu>
-                        <el-submenu index="1-1">
-                            <template slot="title">element</template>
-                            <el-menu-item index="1-1-1">选项1</el-menu-item>
-                        </el-submenu>
                         <el-submenu index="1-2">
+                            <template slot="title">element</template>
+                            <el-menu-item index="1-2-1">选项1</el-menu-item>
+                        </el-submenu>
+                        <el-submenu index="1-3">
                             <template slot="title">vant</template>
                             <el-menu-item
-                                index="1-2-1"
+                                index="1-3-1"
                                 @click="goToNewPage(1, { id: 12533 })"
                                 >日历</el-menu-item
                             >
                         </el-submenu>
-                        <el-submenu index="1-3">
+                        <el-submenu index="1-4">
                             <template slot="title">js</template>
-                            <el-menu-item index="1-3-1" @click="goToNewPage(6)"
+                            <el-menu-item index="1-4-1" @click="goToNewPage(6)"
                                 >数组</el-menu-item
+                            >
+                        </el-submenu>
+                        <el-submenu index="1-5">
+                            <template slot="title">echarts</template>
+                            <el-menu-item index="1-5-1" @click="goToNewPage(7)"
+                                >demo1</el-menu-item
                             >
                         </el-submenu>
                     </el-submenu>
